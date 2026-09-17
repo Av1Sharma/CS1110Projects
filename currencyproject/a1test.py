@@ -4,8 +4,8 @@ Test script for module a1
 When run as a script, this module invokes several procedures that 
 test the various functions in the module a1.
 
-Author: Avi Sharma as4632
-Date:   09/11/2026
+Author: Avi Sharma as4632 Kosta Nani kn464
+Date:   09/16/2026
 """
 
 import introcs
