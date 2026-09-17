@@ -10,11 +10,11 @@ Date:   09/11/2026
 """
 import a1
 
-src = input('Enter original currency: ')
-dst = input('Enter desired currency: ')
+org = input('Enter original currency: ')
+desired = input('Enter desired currency: ')
 amt = float(input('Enter original amount: '))
 
-result = a1.exchange(src, dst, amt)
+result = a1.exchange(org, desired, amt)
 
-print('You can exchange ' + str(amt) + ' ' + src +
-      ' for ' + str(result) + ' ' + dst + '.')
+print('You can exchange ' + str(amt) + ' ' + org +
+      ' for ' + str(result) + ' ' + desired + '.')
