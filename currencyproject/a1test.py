@@ -14,7 +14,9 @@ import a1
 
 def testA():
     """
-    Test procedure for Part A
+    Test procedure for Part A.
+
+    Tests the functions before_space and after_space in module a1.
     """
     # Test before_space with double space between words
     introcs.assert_equals("USD", a1.before_space("USD  100"))
@@ -43,7 +45,10 @@ def testA():
 
 def testB():
     """
-    Test procedure for Part B
+    Test procedure for Part B.
+
+    Tests the functions first_inside_quotes, get_old, get_new, and
+    has_error in module a1.
     """
     # Test first_inside_quotes with substring in middle of string
     introcs.assert_equals('B C', a1.first_inside_quotes('A "B C" D'))
@@ -63,8 +68,9 @@ def testB():
     introcs.assert_equals("1 Bitcoin", a1.get_old(json))
 
     # Test get_old with another valid query
-    json = '{"err":"","old":"2 US Dollars","new":"1.72 Euros","valid":true}'
-    introcs.assert_equals("2 US Dollars", a1.get_old(json))
+    json = ('{ "err":"", "old":"2.5 United States Dollars", ' +
+            '"new":"64.375 Cuban Pesos", "valid":true }')
+    introcs.assert_equals("2.5 United States Dollars", a1.get_old(json))
 
     # Test get_old with an invalid query
     json = ('{"err":"Currency amount is invalid.",' +
@@ -77,8 +83,9 @@ def testB():
     introcs.assert_equals("69190.992850277 Euros", a1.get_new(json))
 
     # Test get_new with another valid query
-    json = '{"err":"","old":"2 US Dollars","new":"1.72 Euros","valid":true}'
-    introcs.assert_equals("1.72 Euros", a1.get_new(json))
+    json = ('{ "err":"", "old":"2.5 United States Dollars", ' +
+            '"new":"64.375 Cuban Pesos", "valid":true }')
+    introcs.assert_equals("64.375 Cuban Pesos", a1.get_new(json))
 
     # Test get_new with an invalid query
     json = ('{"err":"Currency amount is invalid.",' +
@@ -91,7 +98,8 @@ def testB():
     introcs.assert_equals(False, a1.has_error(json))
 
     # Test has_error with another valid query
-    json = '{"err":"","old":"2 US Dollars","new":"1.72 Euros","valid":true}'
+    json = ('{ "err":"", "old":"2.5 United States Dollars", ' +
+        '"new":"64.375 Cuban Pesos", "valid":true }')
     introcs.assert_equals(False, a1.has_error(json))
 
     # Test has_error with an invalid query
@@ -102,7 +110,9 @@ def testB():
 
 def testC():
     """
-    Test procedure for Part C
+    Test procedure for Part C.
+
+    Tests the function query_website in module a1.
     """
     # Test query_website with valid query
     json = a1.query_website('USD', 'EUR', 2.5)
@@ -116,10 +126,24 @@ def testC():
                 '"old":"", "new":"", "valid":false }')
     introcs.assert_equals(expected, json)
 
+    # Test query_website with another valid destination currency
+    json = a1.query_website('USD', 'CUP', 2.5)
+    expected = ('{ "err":"", "old":"2.5 United States Dollars", ' +
+                '"new":"64.375 Cuban Pesos", "valid":true }')
+    introcs.assert_equals(expected, json)
+
+    # Test query_website with invalid destination currency
+    json = a1.query_website('USD', 'AAA', 2.5)
+    expected = ('{ "err":"Exchange currency code is invalid.", ' +
+                '"old":"", "new":"", "valid":false }')
+    introcs.assert_equals(expected, json)
+
 
 def testD():
     """
-    Test procedure for Part D
+    Test procedure for Part D.
+
+    Tests the functions is_currency and exchange in module a1.
     """
     # Test is_currency with valid currency code USD
     introcs.assert_equals(True, a1.is_currency('USD'))
