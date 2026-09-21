@@ -26,6 +26,9 @@ def testA():
 
     # Test before_space with multiple words after the space
     introcs.assert_equals("USD", a1.before_space("USD 100 extra"))
+    
+    # Test before_space with trailing space (space at the end)
+    introcs.assert_equals("USD", a1.before_space("USD "))
 
     # Test before_space with leading space (space at the beginning)
     introcs.assert_equals("", a1.before_space(" USD"))
@@ -41,6 +44,9 @@ def testA():
 
     # Test after_space with leading space (space at the beginning)
     introcs.assert_equals("USD", a1.after_space(" USD"))
+
+    # Test after_space with trailing space (space at the end)
+    introcs.assert_equals("", a1.after_space("USD "))
 
 
 def testB():
