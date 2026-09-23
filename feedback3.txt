@@ -1,0 +1,71 @@
+Hi, this is Gerardo Castillo (gc587), looking at your Assignment A1.
+
+Please revise your A1 solution as we suggest below. Look at each point and revise 
+according to it before going on to the next. When done, resubmit. THEN SUBMIT A REQUEST 
+FOR A REGRADE, SAYING SIMPLY THAT YOU RESUBMITTED. This is how we will know to regrade it. 
+If we don’t get this regrade request, there will be no easy way for us to know that you 
+resubmitted. Be sure you have set your notifications on the CMS so that you receive an 
+email when a grade has been changed.
+
+===========
+
+When grading this program, we looked at the functions in a1.py, the tests in a1test.py,
+and ran the application a1app.py. As you can see from the output below, you have problems
+with incorrect test cases for TestC. We stopped grading a1test.py at this point. We are not looking at 
+the other parts (TestD) until you fix these problems.
+
+Start grading of submissions_rg2\as4632_kn464\a1.py
+
+Grading A1 Functions
+  Grading Part A (Space breaking functions)
+  Finished Part A (Space breaking functions)
+
+  Grading Part B (JSON extraction utilities)
+  Finished Part B (JSON extraction utilities)
+
+  Grading Part C (Currency query connection)
+  Finished Part C (Currency query connection)
+
+  Grading Part D (Currency functions)
+  Finished Part D (Currency functions)
+
+Finished A1 Functions
+
+Grading A1 Test Cases
+  Grading Tests for Part A
+  Finished Tests for Part A
+
+  Grading Tests for Part B
+  Finished Tests for Part B
+
+  Grading Tests for Part C
+  You checked both error test cases, is there some other scenario that can cause an error? Maybe a 'combination' of cases you have?
+    You are missing one last test for query_website.
+  Finished Tests for Part C
+
+Finished A1 Test Cases
+
+Grading A1 Application
+  Grading User Input
+  Finished User Input
+
+  Grading Output Formats
+  Finished Output Formats
+
+Finished A1 Application
+
+Grading Coding Style
+  Grading File a1.py
+  Finished File a1.py
+
+  Grading File a1test.py
+  Finished File a1test.py
+
+  Grading File a1app.py
+  Finished File a1app.py
+
+Finished Coding Style
+
+This assignment requires revisions.
+
+Great job! You're almost there, keep going!
