@@ -142,6 +142,13 @@ def testC():
     json = a1.query_website('USD', 'AAA', 2.5)
     expected = ('{ "err":"Exchange currency code is invalid.", ' +
                 '"old":"", "new":"", "valid":false }')
+    introcs.assert_equals(expected, json)
+
+    # Test query_website with both invalid source and destination currencies
+    json = a1.query_website('AAA', 'ZZZ', 2.5)
+    expected = ('{ "err":"Source currency code is invalid.", ' +
+                '"old":"", "new":"", "valid":false }')
+    introcs.assert_equals(expected, json)
 
     # Test query_website with identical source and destination currency
     json = a1.query_website('USD', 'USD', 2.5)
