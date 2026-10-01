@@ -59,19 +59,19 @@ def test_str5():
     introcs.assert_equals('0.000',  a3.str5(1e-9))
 
 
-# def test_str5_color():
-#     """
-#     Test the str5 functions for cmyk and hsl.
-#     """
-#     print('Testing str5_cmyk and str5_hsl')
+def test_str5_color():
+    """
+    Test the str5 functions for cmyk and hsl.
+    """
+    print('Testing str5_cmyk and str5_hsl')
     
-#     # Tests for str5_cmyk
-#     # We need to make sure the coordinates round properly
-#     text = a3.str5_cmyk(introcs.CMYK(98.448, 25.362, 72.8, 1.0))
-#     introcs.assert_equals('(98.45, 25.36, 72.80, 1.000)',text)
+    # Tests for str5_cmyk
+    # We need to make sure the coordinates round properly
+    text = a3.str5_cmyk(introcs.CMYK(98.448, 25.362, 72.8, 1.0))
+    introcs.assert_equals('(98.45, 25.36, 72.80, 1.000)',text)
     
-#     text = a3.str5_cmyk(introcs.CMYK(0.0, 1.5273, 100.0, 57.846))
-#     introcs.assert_equals('(0.000, 1.527, 100.0, 57.85)',text)
+    text = a3.str5_cmyk(introcs.CMYK(0.0, 1.5273, 100.0, 57.846))
+    introcs.assert_equals('(0.000, 1.527, 100.0, 57.85)',text)
     
 #     # Tests for str5_hsl (add two)
 
