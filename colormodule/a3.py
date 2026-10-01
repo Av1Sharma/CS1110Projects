@@ -19,7 +19,7 @@ def complement_rgb(rgb):
     Precondition: rgb is an RGB object
     """
     # THIS IS WRONG. FIX IT
-    return introcs.RGB(rgb.red, rgb.green, rgb.blue)
+    return introcs.RGB(255-rgb.red, 255-rgb.green, 255-rgb.blue)
 
 
 def str5(value):
