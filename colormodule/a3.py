@@ -109,7 +109,20 @@ def rgb_to_cmyk(rgb):
     """
     # The RGB numbers are in the range 0..255.
     # Change them to the range 0..1 by dividing them by 255.0.
-    pass
+    c, m, y = 0
+    red = rgb.red / 255.0
+    green = rgb.green / 255.0
+    blue = rgb.blue / 255.0
+
+    k = 1 - max(red, green, blue)
+    if k == 1:
+        c, m, y = 0
+    else:
+        c = (1-red-k) / (1-k)
+        m = (1-green-k) / (1-k)
+        y = (1-blue-k) / (1-k)
+    return cmyk(c, m, y, k)
+    
 
 
 def cmyk_to_rgb(cmyk):

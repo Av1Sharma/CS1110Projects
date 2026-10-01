@@ -80,19 +80,19 @@ def test_str5_color():
     text = a3.str5_hsl(introcs.HSL(98.448, 0.25362, 0.728))
     introcs.assert_equals('<98.45, 0.254, 0.728>', text)
 
-# def test_rgb_to_cmyk():
-#     """
-#     Test translation function rgb_to_cmyk
-#     """
-#     print('Testing rgb_to_cmyk')
+def test_rgb_to_cmyk():
+    """
+    Test translation function rgb_to_cmyk
+    """
+    print('Testing rgb_to_cmyk')
     
-#     # The function should guarantee accuracy to three decimal places
-#     rgb = introcs.RGB(255, 255, 255)
-#     cmyk = a3.rgb_to_cmyk(rgb)
-#     introcs.assert_equals(0.0, round(cmyk.cyan,3))
-#     introcs.assert_equals(0.0, round(cmyk.magenta,3))
-#     introcs.assert_equals(0.0, round(cmyk.yellow,3))
-#     introcs.assert_equals(0.0, round(cmyk.black,3))
+    # The function should guarantee accuracy to three decimal places
+    rgb = introcs.RGB(255, 255, 255)
+    cmyk = a3.rgb_to_cmyk(rgb)
+    introcs.assert_equals(0.0, round(cmyk.cyan,3))
+    introcs.assert_equals(0.0, round(cmyk.magenta,3))
+    introcs.assert_equals(0.0, round(cmyk.yellow,3))
+    introcs.assert_equals(0.0, round(cmyk.black,3))
     
 #     rgb = introcs.RGB(0, 0, 0)
 #     cmyk = a3.rgb_to_cmyk(rgb)
