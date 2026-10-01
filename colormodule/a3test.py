@@ -101,20 +101,37 @@ def test_rgb_to_cmyk():
     introcs.assert_equals(0.0, round(cmyk.yellow,3))
     introcs.assert_equals(100.0, round(cmyk.black,3))
         
-#     rgb = introcs.RGB(217, 43, 164)
-#     cmyk = a3.rgb_to_cmyk(rgb)
-#     introcs.assert_equals(0.0, round(cmyk.cyan,3))
-#     introcs.assert_equals(80.184, round(cmyk.magenta,3))
-#     introcs.assert_equals(24.424, round(cmyk.yellow,3))
-#     introcs.assert_equals(14.902, round(cmyk.black,3))
+    rgb = introcs.RGB(217, 43, 164)
+    cmyk = a3.rgb_to_cmyk(rgb)
+    introcs.assert_equals(0.0, round(cmyk.cyan,3))
+    introcs.assert_equals(80.184, round(cmyk.magenta,3))
+    introcs.assert_equals(24.424, round(cmyk.yellow,3))
+    introcs.assert_equals(14.902, round(cmyk.black,3))
 
 
-# def test_cmyk_to_rgb():
-#     """
-#     Test translation function cmyk_to_rgb
-#     """
-#     print('Testing cmyk_to_rgb')
-#     # ADD TESTS TO ME
+def test_cmyk_to_rgb():
+    """
+    Test translation function cmyk_to_rgb
+    """
+    print('Testing cmyk_to_rgb')
+    # Test 1: Pure white
+    cmyk = introcs.CMYK(0.0, 0.0, 0.0, 0.0)
+    rgb = a3.cmyk_to_rgb(cmyk)
+    introcs.assert_equals(255, rgb.red)
+    introcs.assert_equals(255, rgb.green)
+    introcs.assert_equals(255, rgb.blue)
+    # Test 2: Pure black (k = 100.0)
+    cmyk = introcs.CMYK(0.0, 0.0, 0.0, 100.0)
+    rgb = a3.cmyk_to_rgb(cmyk)
+    introcs.assert_equals(0, rgb.red)
+    introcs.assert_equals(0, rgb.green)
+    introcs.assert_equals(0, rgb.blue)
+    # Test 3: Mixed color requiring rounding across all channels
+    cmyk = introcs.CMYK(0.0, 80.184, 24.424, 14.902)
+    rgb = a3.cmyk_to_rgb(cmyk)
+    introcs.assert_equals(217, rgb.red)
+    introcs.assert_equals(43,  rgb.green)
+    introcs.assert_equals(164, rgb.blue)
 
 
 # def test_rgb_to_hsl():
