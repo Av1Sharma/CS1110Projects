@@ -159,6 +159,11 @@ def rgb_to_hsl(rgb):
     """
     # The RGB numbers are in the range 0..255.
     # Change them to range 0..1 by dividing them by 255.0.
+
+    red = rgb.red / 255.0
+    green = rgb.green / 255.0
+    blue = rgb.blue / 255.0
+    
     maxrgb = max(red, green, blue)
     minrgb = min(red, green, blue)
 

@@ -134,12 +134,53 @@ def test_cmyk_to_rgb():
     introcs.assert_equals(164, rgb.blue)
 
 
-# def test_rgb_to_hsl():
-#     """
-#     Test translation function rgb_to_hsl
-#     """
-#     print('Testing rgb_to_hsl')
-#     # ADD TESTS TO ME
+def test_rgb_to_hsl():
+    """
+    Test translation function rgb_to_hsl
+    """
+    print('Testing rgb_to_hsl')
+
+    # 1. maxrgb == minrgb AND l == 0 (Black)
+    hsl = a3.rgb_to_hsl(introcs.RGB(0, 0, 0))
+    introcs.assert_equals(0.0, round(hsl.hue, 3))
+    introcs.assert_equals(0.0, round(hsl.saturation, 3))
+    introcs.assert_equals(0.0, round(hsl.lightness, 3))
+
+    # 2. maxrgb == minrgb AND l == 1 (White)
+    hsl = a3.rgb_to_hsl(introcs.RGB(255, 255, 255))
+    introcs.assert_equals(0.0, round(hsl.hue, 3))
+    introcs.assert_equals(0.0, round(hsl.saturation, 3))
+    introcs.assert_equals(1.0, round(hsl.lightness, 3))
+
+    # 3. maxrgb == minrgb, but l is neither 0 nor 1 (Gray)
+    hsl = a3.rgb_to_hsl(introcs.RGB(128, 128, 128))
+    introcs.assert_equals(0.0, round(hsl.hue, 3))
+    introcs.assert_equals(0.0, round(hsl.saturation, 3))
+    introcs.assert_equals(0.502, round(hsl.lightness, 3))
+
+    # 4. maxrgb == red AND green >= blue (Orange)
+    hsl = a3.rgb_to_hsl(introcs.RGB(255, 128, 0))
+    introcs.assert_equals(30.118, round(hsl.hue, 3))
+    introcs.assert_equals(1.0, round(hsl.saturation, 3))
+    introcs.assert_equals(0.5, round(hsl.lightness, 3))
+
+    # 5. maxrgb == red AND green < blue (Rose / Pink-Red)
+    hsl = a3.rgb_to_hsl(introcs.RGB(255, 0, 128))
+    introcs.assert_equals(329.882, round(hsl.hue, 3))
+    introcs.assert_equals(1.0, round(hsl.saturation, 3))
+    introcs.assert_equals(0.5, round(hsl.lightness, 3))
+
+    # 6. maxrgb == green (Spring Green)
+    hsl = a3.rgb_to_hsl(introcs.RGB(0, 255, 128))
+    introcs.assert_equals(150.118, round(hsl.hue, 3))
+    introcs.assert_equals(1.0, round(hsl.saturation, 3))
+    introcs.assert_equals(0.5, round(hsl.lightness, 3))
+
+    # 7. maxrgb == blue (Purple / Violet)
+    hsl = a3.rgb_to_hsl(introcs.RGB(128, 0, 255))
+    introcs.assert_equals(270.118, round(hsl.hue, 3))
+    introcs.assert_equals(1.0, round(hsl.saturation, 3))
+    introcs.assert_equals(0.5, round(hsl.lightness, 3))
 
 
 # def test_hsl_to_rgb():
