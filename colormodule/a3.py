@@ -18,7 +18,7 @@ def complement_rgb(rgb):
     Parameter rgb: the color to complement
     Precondition: rgb is an RGB object
     """
-    # THIS IS WRONG. FIX IT
+    # THIS IS WRONG. FIX IT; I fixed it bro calm down all caps for what
     return introcs.RGB(255-rgb.red, 255-rgb.green, 255-rgb.blue)
 
 
@@ -41,9 +41,21 @@ def str5(value):
     """
     # Remember that the rounding takes place at a different place depending 
     # on how big value is. Look at the examples in the specification.
-    pass
 
+    if value >= 100:
+        val = round(value, 1)
+    elif value >= 10:
+        val = round(value, 2)
+    else:
+        val = round(value, 3)
+    val = str(float(val))
 
+    if len(val) == 4:
+        val = val + '0'
+    elif len(val) == 3:
+        val = val + '00'
+    return str(val)
+    
 def str5_cmyk(cmyk):
     """
     Returns the string representation of cmyk in the form "(C, M, Y, K)".

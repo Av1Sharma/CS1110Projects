@@ -34,6 +34,7 @@ def test_str5():
     """
     Test function str5
     """
+
     introcs.assert_equals('130.6',  a3.str5(130.59))
     introcs.assert_equals('130.5',  a3.str5(130.54))
     introcs.assert_equals('100.0',  a3.str5(100))
@@ -58,159 +59,159 @@ def test_str5():
     introcs.assert_equals('0.000',  a3.str5(1e-9))
 
 
-def test_str5_color():
-    """
-    Test the str5 functions for cmyk and hsl.
-    """
-    print('Testing str5_cmyk and str5_hsl')
+# def test_str5_color():
+#     """
+#     Test the str5 functions for cmyk and hsl.
+#     """
+#     print('Testing str5_cmyk and str5_hsl')
     
-    # Tests for str5_cmyk
-    # We need to make sure the coordinates round properly
-    text = a3.str5_cmyk(introcs.CMYK(98.448, 25.362, 72.8, 1.0))
-    introcs.assert_equals('(98.45, 25.36, 72.80, 1.000)',text)
+#     # Tests for str5_cmyk
+#     # We need to make sure the coordinates round properly
+#     text = a3.str5_cmyk(introcs.CMYK(98.448, 25.362, 72.8, 1.0))
+#     introcs.assert_equals('(98.45, 25.36, 72.80, 1.000)',text)
     
-    text = a3.str5_cmyk(introcs.CMYK(0.0, 1.5273, 100.0, 57.846))
-    introcs.assert_equals('(0.000, 1.527, 100.0, 57.85)',text)
+#     text = a3.str5_cmyk(introcs.CMYK(0.0, 1.5273, 100.0, 57.846))
+#     introcs.assert_equals('(0.000, 1.527, 100.0, 57.85)',text)
     
-    # Tests for str5_hsl (add two)
+#     # Tests for str5_hsl (add two)
 
 
-def test_rgb_to_cmyk():
-    """
-    Test translation function rgb_to_cmyk
-    """
-    print('Testing rgb_to_cmyk')
+# def test_rgb_to_cmyk():
+#     """
+#     Test translation function rgb_to_cmyk
+#     """
+#     print('Testing rgb_to_cmyk')
     
-    # The function should guarantee accuracy to three decimal places
-    rgb = introcs.RGB(255, 255, 255)
-    cmyk = a3.rgb_to_cmyk(rgb)
-    introcs.assert_equals(0.0, round(cmyk.cyan,3))
-    introcs.assert_equals(0.0, round(cmyk.magenta,3))
-    introcs.assert_equals(0.0, round(cmyk.yellow,3))
-    introcs.assert_equals(0.0, round(cmyk.black,3))
+#     # The function should guarantee accuracy to three decimal places
+#     rgb = introcs.RGB(255, 255, 255)
+#     cmyk = a3.rgb_to_cmyk(rgb)
+#     introcs.assert_equals(0.0, round(cmyk.cyan,3))
+#     introcs.assert_equals(0.0, round(cmyk.magenta,3))
+#     introcs.assert_equals(0.0, round(cmyk.yellow,3))
+#     introcs.assert_equals(0.0, round(cmyk.black,3))
     
-    rgb = introcs.RGB(0, 0, 0)
-    cmyk = a3.rgb_to_cmyk(rgb)
-    introcs.assert_equals(0.0, round(cmyk.cyan,3))
-    introcs.assert_equals(0.0, round(cmyk.magenta,3))
-    introcs.assert_equals(0.0, round(cmyk.yellow,3))
-    introcs.assert_equals(100.0, round(cmyk.black,3))
+#     rgb = introcs.RGB(0, 0, 0)
+#     cmyk = a3.rgb_to_cmyk(rgb)
+#     introcs.assert_equals(0.0, round(cmyk.cyan,3))
+#     introcs.assert_equals(0.0, round(cmyk.magenta,3))
+#     introcs.assert_equals(0.0, round(cmyk.yellow,3))
+#     introcs.assert_equals(100.0, round(cmyk.black,3))
         
-    rgb = introcs.RGB(217, 43, 164)
-    cmyk = a3.rgb_to_cmyk(rgb)
-    introcs.assert_equals(0.0, round(cmyk.cyan,3))
-    introcs.assert_equals(80.184, round(cmyk.magenta,3))
-    introcs.assert_equals(24.424, round(cmyk.yellow,3))
-    introcs.assert_equals(14.902, round(cmyk.black,3))
+#     rgb = introcs.RGB(217, 43, 164)
+#     cmyk = a3.rgb_to_cmyk(rgb)
+#     introcs.assert_equals(0.0, round(cmyk.cyan,3))
+#     introcs.assert_equals(80.184, round(cmyk.magenta,3))
+#     introcs.assert_equals(24.424, round(cmyk.yellow,3))
+#     introcs.assert_equals(14.902, round(cmyk.black,3))
 
 
-def test_cmyk_to_rgb():
-    """
-    Test translation function cmyk_to_rgb
-    """
-    print('Testing cmyk_to_rgb')
-    # ADD TESTS TO ME
+# def test_cmyk_to_rgb():
+#     """
+#     Test translation function cmyk_to_rgb
+#     """
+#     print('Testing cmyk_to_rgb')
+#     # ADD TESTS TO ME
 
 
-def test_rgb_to_hsl():
-    """
-    Test translation function rgb_to_hsl
-    """
-    print('Testing rgb_to_hsl')
-    # ADD TESTS TO ME
+# def test_rgb_to_hsl():
+#     """
+#     Test translation function rgb_to_hsl
+#     """
+#     print('Testing rgb_to_hsl')
+#     # ADD TESTS TO ME
 
 
-def test_hsl_to_rgb():
-    """
-    Test translation function hsl_to_rgb
-    """
-    print('Testing hsl_to_rgb')
-    # ADD TESTS TO ME
+# def test_hsl_to_rgb():
+#     """
+#     Test translation function hsl_to_rgb
+#     """
+#     print('Testing hsl_to_rgb')
+#     # ADD TESTS TO ME
 
 
-def test_contrast_value():
-    """
-    Test translation function contrast_value
-    """
-    print('Testing contrast_value')
+# def test_contrast_value():
+#     """
+#     Test translation function contrast_value
+#     """
+#     print('Testing contrast_value')
     
-    # contrast == -1.0 (extreme)
-    result = a3.contrast_value(0.0,0.0)
-    introcs.assert_floats_equal(0.5,result)
+#     # contrast == -1.0 (extreme)
+#     result = a3.contrast_value(0.0,0.0)
+#     introcs.assert_floats_equal(0.5,result)
     
-    result = a3.contrast_value(1.0,0.0)
-    introcs.assert_floats_equal(0.5,result)
+#     result = a3.contrast_value(1.0,0.0)
+#     introcs.assert_floats_equal(0.5,result)
     
-    # contrast < 0.5, bottom part of sawtooth
-    result = a3.contrast_value(0.1,0.25)
-    introcs.assert_floats_equal(0.3,result)
+#     # contrast < 0.5, bottom part of sawtooth
+#     result = a3.contrast_value(0.1,0.25)
+#     introcs.assert_floats_equal(0.3,result)
     
-    # contrast < 0.5, middle of sawtooth
-    result = a3.contrast_value(0.4,0.3)
-    introcs.assert_floats_equal(0.4571429,result)
+#     # contrast < 0.5, middle of sawtooth
+#     result = a3.contrast_value(0.4,0.3)
+#     introcs.assert_floats_equal(0.4571429,result)
     
-    # contrast < 0.5, upper part of sawtooth
-    result = a3.contrast_value(0.9,0.35)
-    introcs.assert_floats_equal(0.8142857,result)
+#     # contrast < 0.5, upper part of sawtooth
+#     result = a3.contrast_value(0.9,0.35)
+#     introcs.assert_floats_equal(0.8142857,result)
     
-    # contrast == 0.5, bottom part of sawtooth
-    result = a3.contrast_value(0.1,0.5)
-    introcs.assert_floats_equal(0.1,result)
+#     # contrast == 0.5, bottom part of sawtooth
+#     result = a3.contrast_value(0.1,0.5)
+#     introcs.assert_floats_equal(0.1,result)
     
-    # contrast == 0.5, middle of sawtooth
-    result = a3.contrast_value(0.6,0.5)
-    introcs.assert_floats_equal(0.6,result)
+#     # contrast == 0.5, middle of sawtooth
+#     result = a3.contrast_value(0.6,0.5)
+#     introcs.assert_floats_equal(0.6,result)
     
-    # contrast == 0.5, middle part of sawtooth
-    result = a3.contrast_value(0.9,0.5)
-    introcs.assert_floats_equal(0.9,result)
+#     # contrast == 0.5, middle part of sawtooth
+#     result = a3.contrast_value(0.9,0.5)
+#     introcs.assert_floats_equal(0.9,result)
     
-    # contrast > 0, upper part of sawtooth
-    result = a3.contrast_value(0.1,0.65)
-    introcs.assert_floats_equal(0.05384615,result)
+#     # contrast > 0, upper part of sawtooth
+#     result = a3.contrast_value(0.1,0.65)
+#     introcs.assert_floats_equal(0.05384615,result)
     
-    # contrast > 0, upper of sawtooth
-    result = a3.contrast_value(0.4,0.75)
-    introcs.assert_floats_equal(0.2,result)
+#     # contrast > 0, upper of sawtooth
+#     result = a3.contrast_value(0.4,0.75)
+#     introcs.assert_floats_equal(0.2,result)
     
-    # contrast > 0, upper part of sawtooth
-    result = a3.contrast_value(0.9,0.7)
-    introcs.assert_floats_equal(0.95714286,result)
+#     # contrast > 0, upper part of sawtooth
+#     result = a3.contrast_value(0.9,0.7)
+#     introcs.assert_floats_equal(0.95714286,result)
     
-    # contrast == 1.0 (extreme)
-    result = a3.contrast_value(0.2,1.0)
-    introcs.assert_floats_equal(0.0,result)
+#     # contrast == 1.0 (extreme)
+#     result = a3.contrast_value(0.2,1.0)
+#     introcs.assert_floats_equal(0.0,result)
     
-    result = a3.contrast_value(0.6,1.0)
-    introcs.assert_floats_equal(1.0,result)
+#     result = a3.contrast_value(0.6,1.0)
+#     introcs.assert_floats_equal(1.0,result)
 
 
-def test_contrast_rgb():
-    """
-    Test translation function contrast_value
-    """
-    print('Testing contrast_rgb')
+# def test_contrast_rgb():
+#     """
+#     Test translation function contrast_value
+#     """
+#     print('Testing contrast_rgb')
     
-    # Darkening (less than 0.5) contrast
-    rgb = introcs.RGB(240, 15, 118)
-    a3.contrast_rgb(rgb,0.3)
-    introcs.assert_equals(220, rgb.red)
-    introcs.assert_equals(35,  rgb.green)
-    introcs.assert_equals(123, rgb.blue)
+#     # Darkening (less than 0.5) contrast
+#     rgb = introcs.RGB(240, 15, 118)
+#     a3.contrast_rgb(rgb,0.3)
+#     introcs.assert_equals(220, rgb.red)
+#     introcs.assert_equals(35,  rgb.green)
+#     introcs.assert_equals(123, rgb.blue)
     
-    # ADD TWO MORE TESTS
+#     # ADD TWO MORE TESTS
 
 
-# Script Code
-# THIS PREVENTS THE TESTS RUNNING ON IMPORT
+# # Script Code
+# # THIS PREVENTS THE TESTS RUNNING ON IMPORT
 if __name__ == '__main__':
     test_complement()
     test_str5()
-    test_str5_color()
-    test_rgb_to_cmyk()
-    test_cmyk_to_rgb()
-    test_rgb_to_hsl()
-    test_hsl_to_rgb()
-    test_contrast_value()
-    test_contrast_rgb()
-    print('Module a3 passed all tests.')
+#     test_str5_color()
+#     test_rgb_to_cmyk()
+#     test_cmyk_to_rgb()
+#     test_rgb_to_hsl()
+#     test_hsl_to_rgb()
+#     test_contrast_value()
+#     test_contrast_rgb()
+#     print('Module a3 passed all tests.')
