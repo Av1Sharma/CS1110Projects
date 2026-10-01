@@ -73,7 +73,8 @@ def str5_cmyk(cmyk):
     Parameter cmyk: the color to convert to a string
     Precondition: cmyk is an CMYK object.
     """
-    pass
+    val = str5(cmyk.cyan) + ', ' + str5(cmyk.magenta) + ', ' + str5(cmyk.yellow) + ', ' + str5(cmyk.black)
+    return '(' + val + ')'
 
 
 def str5_hsl(hsl):
