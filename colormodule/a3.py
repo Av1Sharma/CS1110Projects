@@ -116,7 +116,7 @@ def rgb_to_cmyk(rgb):
 
     k = 1 - max(red, green, blue)
     if k == 1:
-        c, m, y = 0
+        c, m, y = 0.0, 0.0, 0.0
     else:
         c = (1.0-red-k) / (1.0-k)
         m = (1.0-green-k) / (1.0-k)
@@ -141,11 +141,11 @@ def cmyk_to_rgb(cmyk):
     yellow = cmyk.yellow / 100.0
     k = cmyk.black / 100.0
 
-    red = (1-cmyk.cyan)*(1-cymk.black)
-    green = (1-cmyk.magenta)*(1-cymk.black)
-    blue = (1-cmyk.yellow)*(1-cymk.black)
+    red = round((1.0 - cyan) * (1.0 - k) * 255.0)
+    green = round((1.0 - magenta) * (1.0 - k) * 255.0)
+    blue = round((1.0 - yellow) * (1.0 - k) * 255.0)
 
-    return introcs.RGB(red*255.0, green*255.0, blue*255.0)
+    return introcs.RGB(red, green, blue)
 
 
 def rgb_to_hsl(rgb):
