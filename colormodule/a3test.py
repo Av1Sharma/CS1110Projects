@@ -183,12 +183,59 @@ def test_rgb_to_hsl():
     introcs.assert_equals(0.5, round(hsl.lightness, 3))
 
 
-# def test_hsl_to_rgb():
-#     """
-#     Test translation function hsl_to_rgb
-#     """
-#     print('Testing hsl_to_rgb')
-#     # ADD TESTS TO ME
+def test_hsl_to_rgb():
+    """
+    Test translation function hsl_to_rgb
+    """
+    print('Testing hsl_to_rgb')
+
+    # Test 1: Pure white (L == 1.0)
+    rgb = a3.hsl_to_rgb(introcs.HSL(0.0, 0.0, 1.0))
+    introcs.assert_equals(255, rgb.red)
+    introcs.assert_equals(255, rgb.green)
+    introcs.assert_equals(255, rgb.blue)
+
+    # Test 2: Pure black (L == 0.0)
+    rgb = a3.hsl_to_rgb(introcs.HSL(0.0, 0.0, 0.0))
+    introcs.assert_equals(0, rgb.red)
+    introcs.assert_equals(0, rgb.green)
+    introcs.assert_equals(0, rgb.blue)
+
+    # Test 3: H_i == 0 (Orange)
+    rgb = a3.hsl_to_rgb(introcs.HSL(30.118, 1.0, 0.5))
+    introcs.assert_equals(255, rgb.red)
+    introcs.assert_equals(128, rgb.green)
+    introcs.assert_equals(0,   rgb.blue)
+
+    # Test 4: H_i == 1 (Yellow-Green)
+    rgb = a3.hsl_to_rgb(introcs.HSL(90.0, 1.0, 0.5))
+    introcs.assert_equals(128, rgb.red)
+    introcs.assert_equals(255, rgb.green)
+    introcs.assert_equals(0,   rgb.blue)
+
+    # Test 5: H_i == 2 (Spring Green)
+    rgb = a3.hsl_to_rgb(introcs.HSL(150.118, 1.0, 0.5))
+    introcs.assert_equals(0,   rgb.red)
+    introcs.assert_equals(255, rgb.green)
+    introcs.assert_equals(128, rgb.blue)
+
+    # Test 6: H_i == 3 (Cyan-Blue)
+    rgb = a3.hsl_to_rgb(introcs.HSL(210.0, 1.0, 0.5))
+    introcs.assert_equals(0,   rgb.red)
+    introcs.assert_equals(128, rgb.green)
+    introcs.assert_equals(255, rgb.blue)
+
+    # Test 7: H_i == 4 (Purple)
+    rgb = a3.hsl_to_rgb(introcs.HSL(270.118, 1.0, 0.5))
+    introcs.assert_equals(128, rgb.red)
+    introcs.assert_equals(0,   rgb.green)
+    introcs.assert_equals(255, rgb.blue)
+
+    # Test 8: H_i == 5 (Rose / Magenta-Red)
+    rgb = a3.hsl_to_rgb(introcs.HSL(329.882, 1.0, 0.5))
+    introcs.assert_equals(255, rgb.red)
+    introcs.assert_equals(0,   rgb.green)
+    introcs.assert_equals(128, rgb.blue)
 
 
 # def test_contrast_value():

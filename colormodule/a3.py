@@ -180,9 +180,10 @@ def rgb_to_hsl(rgb):
 
     l = (maxrgb + minrgb) / 2.0
 
-    s = (maxrgb - l) / min(l, 1.0-l)
-    if l == 1.0 or l == 0.0:
+    if l == 0.0 or l == 1.0:
         s = 0.0
+    else:
+        s = (maxrgb - l) / min(l, 1.0 - l)
 
     return introcs.HSL(h, s, l)
 
@@ -196,7 +197,35 @@ def hsl_to_rgb(hsl):
     Parameter hsl: the color to convert to a RGB object
     Precondition: hsl is an HSL object.
     """
-    pass
+    h = hsl.hue
+    s = hsl.saturation
+    l = hsl.lightness
+
+    h_i = math.floor(h / 60.0)
+    if h_i == 6:
+        h_i = 0
+
+    f = (h / 60.0) - math.floor(h / 60.0)
+    c = min(l, 1.0 - l) * s
+    p = l + c
+    q = l - c
+    u = l - (1.0 - 2.0 * f) * c
+    v = l + (1.0 - 2.0 * f) * c
+
+    if h_i == 0:
+        r, g, b = p, u, q
+    elif h_i == 1:
+        r, g, b = v, p, q
+    elif h_i == 2:
+        r, g, b = q, p, u
+    elif h_i == 3:
+        r, g, b = q, v, p
+    elif h_i == 4:
+        r, g, b = u, q, p
+    else:  # h_i == 5
+        r, g, b = p, q, v
+
+    return introcs.RGB(round(r * 255.0), round(g * 255.0), round(b * 255.0))
 
 
 def contrast_value(value,contrast):
