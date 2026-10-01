@@ -238,61 +238,61 @@ def test_hsl_to_rgb():
     introcs.assert_equals(128, rgb.blue)
 
 
-# def test_contrast_value():
-#     """
-#     Test translation function contrast_value
-#     """
-#     print('Testing contrast_value')
+def test_contrast_value():
+    """
+    Test translation function contrast_value
+    """
+    print('Testing contrast_value')
     
-#     # contrast == -1.0 (extreme)
-#     result = a3.contrast_value(0.0,0.0)
-#     introcs.assert_floats_equal(0.5,result)
+    # contrast == -1.0 (extreme)
+    result = a3.contrast_value(0.0,0.0)
+    introcs.assert_floats_equal(0.5,result)
     
-#     result = a3.contrast_value(1.0,0.0)
-#     introcs.assert_floats_equal(0.5,result)
+    result = a3.contrast_value(1.0,0.0)
+    introcs.assert_floats_equal(0.5,result)
     
-#     # contrast < 0.5, bottom part of sawtooth
-#     result = a3.contrast_value(0.1,0.25)
-#     introcs.assert_floats_equal(0.3,result)
+    # contrast < 0.5, bottom part of sawtooth
+    result = a3.contrast_value(0.1,0.25)
+    introcs.assert_floats_equal(0.3,result)
     
-#     # contrast < 0.5, middle of sawtooth
-#     result = a3.contrast_value(0.4,0.3)
-#     introcs.assert_floats_equal(0.4571429,result)
+    # contrast < 0.5, middle of sawtooth
+    result = a3.contrast_value(0.4,0.3)
+    introcs.assert_floats_equal(0.4571429,result)
     
-#     # contrast < 0.5, upper part of sawtooth
-#     result = a3.contrast_value(0.9,0.35)
-#     introcs.assert_floats_equal(0.8142857,result)
+    # contrast < 0.5, upper part of sawtooth
+    result = a3.contrast_value(0.9,0.35)
+    introcs.assert_floats_equal(0.8142857,result)
     
-#     # contrast == 0.5, bottom part of sawtooth
-#     result = a3.contrast_value(0.1,0.5)
-#     introcs.assert_floats_equal(0.1,result)
+    # contrast == 0.5, bottom part of sawtooth
+    result = a3.contrast_value(0.1,0.5)
+    introcs.assert_floats_equal(0.1,result)
     
-#     # contrast == 0.5, middle of sawtooth
-#     result = a3.contrast_value(0.6,0.5)
-#     introcs.assert_floats_equal(0.6,result)
+    # contrast == 0.5, middle of sawtooth
+    result = a3.contrast_value(0.6,0.5)
+    introcs.assert_floats_equal(0.6,result)
     
-#     # contrast == 0.5, middle part of sawtooth
-#     result = a3.contrast_value(0.9,0.5)
-#     introcs.assert_floats_equal(0.9,result)
+    # contrast == 0.5, middle part of sawtooth
+    result = a3.contrast_value(0.9,0.5)
+    introcs.assert_floats_equal(0.9,result)
     
-#     # contrast > 0, upper part of sawtooth
-#     result = a3.contrast_value(0.1,0.65)
-#     introcs.assert_floats_equal(0.05384615,result)
+    # contrast > 0, upper part of sawtooth
+    result = a3.contrast_value(0.1,0.65)
+    introcs.assert_floats_equal(0.05384615,result)
     
-#     # contrast > 0, upper of sawtooth
-#     result = a3.contrast_value(0.4,0.75)
-#     introcs.assert_floats_equal(0.2,result)
+    # contrast > 0, upper of sawtooth
+    result = a3.contrast_value(0.4,0.75)
+    introcs.assert_floats_equal(0.2,result)
     
-#     # contrast > 0, upper part of sawtooth
-#     result = a3.contrast_value(0.9,0.7)
-#     introcs.assert_floats_equal(0.95714286,result)
+    # contrast > 0, upper part of sawtooth
+    result = a3.contrast_value(0.9,0.7)
+    introcs.assert_floats_equal(0.95714286,result)
     
-#     # contrast == 1.0 (extreme)
-#     result = a3.contrast_value(0.2,1.0)
-#     introcs.assert_floats_equal(0.0,result)
+    # contrast == 1.0 (extreme)
+    result = a3.contrast_value(0.2,1.0)
+    introcs.assert_floats_equal(0.0,result)
     
-#     result = a3.contrast_value(0.6,1.0)
-#     introcs.assert_floats_equal(1.0,result)
+    result = a3.contrast_value(0.6,1.0)
+    introcs.assert_floats_equal(1.0,result)
 
 
 # def test_contrast_rgb():
