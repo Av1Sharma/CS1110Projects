@@ -94,7 +94,8 @@ def str5_hsl(hsl):
     Parameter hsl: the color to convert to a string
     Precondition: hsl is an HSL object.
     """
-    pass
+    value = '<' + str5(hsl.hue) + ', ' + str5(hsl.saturation) + ', ' + str5(hsl.lightness) + '>'
+    return value
 
 
 def rgb_to_cmyk(rgb):
