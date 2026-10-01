@@ -121,7 +121,7 @@ def rgb_to_cmyk(rgb):
         c = (1-red-k) / (1-k)
         m = (1-green-k) / (1-k)
         y = (1-blue-k) / (1-k)
-    return cmyk(c, m, y, k)
+    return introcs.cmyk(c, m, y, k)
     
 
 
@@ -136,7 +136,11 @@ def cmyk_to_rgb(cmyk):
     """
     # The CMYK numbers are in the range 0.0..100.0. 
     # Deal with them the same way as the RGB numbers in rgb_to_cmyk()
-    pass
+    red = (1-cmyk.cyan)(1-cymk.black)
+    green = (1-cmyk.magenta)(1-cymk.black)
+    blue = (1-cmyk.yellow)(1-cymk.black)
+
+    return introcs.RGB(red, green, blue)
 
 
 def rgb_to_hsl(rgb):

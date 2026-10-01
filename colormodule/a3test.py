@@ -94,12 +94,12 @@ def test_rgb_to_cmyk():
     introcs.assert_equals(0.0, round(cmyk.yellow,3))
     introcs.assert_equals(0.0, round(cmyk.black,3))
     
-#     rgb = introcs.RGB(0, 0, 0)
-#     cmyk = a3.rgb_to_cmyk(rgb)
-#     introcs.assert_equals(0.0, round(cmyk.cyan,3))
-#     introcs.assert_equals(0.0, round(cmyk.magenta,3))
-#     introcs.assert_equals(0.0, round(cmyk.yellow,3))
-#     introcs.assert_equals(100.0, round(cmyk.black,3))
+    rgb = introcs.RGB(0, 0, 0)
+    cmyk = a3.rgb_to_cmyk(rgb)
+    introcs.assert_equals(0.0, round(cmyk.cyan,3))
+    introcs.assert_equals(0.0, round(cmyk.magenta,3))
+    introcs.assert_equals(0.0, round(cmyk.yellow,3))
+    introcs.assert_equals(100.0, round(cmyk.black,3))
         
 #     rgb = introcs.RGB(217, 43, 164)
 #     cmyk = a3.rgb_to_cmyk(rgb)
