@@ -295,20 +295,32 @@ def test_contrast_value():
     introcs.assert_floats_equal(1.0,result)
 
 
-# def test_contrast_rgb():
-#     """
-#     Test translation function contrast_value
-#     """
-#     print('Testing contrast_rgb')
+def test_contrast_rgb():
+    """
+    Test translation function contrast_rgb
+    """
+    print('Testing contrast_rgb')
     
-#     # Darkening (less than 0.5) contrast
-#     rgb = introcs.RGB(240, 15, 118)
-#     a3.contrast_rgb(rgb,0.3)
-#     introcs.assert_equals(220, rgb.red)
-#     introcs.assert_equals(35,  rgb.green)
-#     introcs.assert_equals(123, rgb.blue)
+    # 1. Darkening (less than 0.5) contrast
+    rgb = introcs.RGB(240, 15, 118)
+    a3.contrast_rgb(rgb,0.3)
+    introcs.assert_equals(220, rgb.red)
+    introcs.assert_equals(35,  rgb.green)
+    introcs.assert_equals(123, rgb.blue)
     
-#     # ADD TWO MORE TESTS
+    # 2. Neutral (0.5) contrast: values remain unchanged
+    rgb = introcs.RGB(100, 150, 200)
+    a3.contrast_rgb(rgb, 0.5)
+    introcs.assert_equals(100, rgb.red)
+    introcs.assert_equals(150, rgb.green)
+    introcs.assert_equals(200, rgb.blue)
+
+    # 3. Brightening/increasing (> 0.5) contrast: values pulled further apart
+    rgb = introcs.RGB(240, 15, 118)
+    a3.contrast_rgb(rgb, 0.7)
+    introcs.assert_equals(249, rgb.red)
+    introcs.assert_equals(6,   rgb.green)
+    introcs.assert_equals(105, rgb.blue)
 
 
 # # Script Code
