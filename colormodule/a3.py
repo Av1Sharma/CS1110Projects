@@ -159,7 +159,30 @@ def rgb_to_hsl(rgb):
     """
     # The RGB numbers are in the range 0..255.
     # Change them to range 0..1 by dividing them by 255.0.
-    pass
+    red = rgb.red / 255.0
+    green = rgb.green / 255.0
+    blue = rgb.blue / 255.0
+
+    maxrgb = max(red, green, blue)
+    minrgb = min(red, green, blue)
+
+    if maxrgb == minrgb:
+        h = 0
+    elif maxrgb == green:
+        h = 60.0 * (red-green) / (maxrgb - minrgb)
+    elif maxrgb == blue:
+        h = 60.0 * (red-green) / (maxrgb - minrgb) + 360.0
+    elif maxrgb == red and green >= blue:
+        h = 60.0 * (red-green) / (maxrgb - minrgb) + 120.0
+    else:
+        h = 60.0 * (red-green) / (maxrgb - minrgb) + 240.0
+    
+    l = (maxrgb + minrgb) / 2
+    s = (maxrbgb - L) / min(L, 1-L)
+    if l == 1 or l == 0:
+        s = 0
+    
+    return introcs.HSL(h, s, l)
 
 
 def hsl_to_rgb(hsl):
