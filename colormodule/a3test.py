@@ -74,7 +74,11 @@ def test_str5_color():
     introcs.assert_equals('(0.000, 1.527, 100.0, 57.85)',text)
     
     # Tests for str5_hsl (add two)
-
+    text = a3.str5_hsl(introcs.HSL(0.0, 0.313725490196, 0.5))
+    introcs.assert_equals('<0.000, 0.314, 0.500>', text)
+    
+    text = a3.str5_hsl(introcs.HSL(98.448, 0.25362, 0.728))
+    introcs.assert_equals('<98.45, 0.254, 0.728>', text)
 
 # def test_rgb_to_cmyk():
 #     """
