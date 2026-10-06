@@ -51,7 +51,7 @@ def str5(value):
     val = str(float(val))
 
     if len(val) == 4:
-        val = val + '0'
+        val += '0'
     elif len(val) == 3:
         val = val + '00'
     return str(val)
@@ -144,7 +144,7 @@ def cmyk_to_rgb(cmyk):
     red = round((1.0 - cyan) * (1.0 - k) * 255.0)
     green = round((1.0 - magenta) * (1.0 - k) * 255.0)
     blue = round((1.0 - yellow) * (1.0 - k) * 255.0)
-
+    print(introcs.RGB(red, green, blue))
     return introcs.RGB(red, green, blue)
 
 
@@ -243,19 +243,22 @@ def contrast_value(value,contrast):
     Parameter contrast: the contrast amount (0.5 is no contrast)
     Precondition: contrast is a float in 0..1
     """
+    res = 0.0
     if contrast == 1.0:
         if value >= 0.5:
-            return 1.0
+            res = 1.0
         else:
-            return 0.0
+            res = 0.0
 
     m = 2.0 * contrast - 1.0
     if value < 0.25 + 0.25 * m:
-        return ((1.0 - m) / (1.0 + m)) * value
+        res = ((1.0 - m) / (1.0 + m)) * value
     elif value > 0.75 - 0.25 * m:
-        return ((1.0 - m) / (1.0 + m)) * (value - (3.0 - m) / 4.0) + (3.0 + m) / 4.0
+        res = ((1.0 - m) / (1.0 + m)) * (value - (3.0 - m) / 4.0) + (3.0 + m) / 4.0
     else:
-        return ((1.0 + m) / (1.0 - m)) * (value - (1.0 + m) / 4.0) + (1.0 - m) / 4.0
+        res = ((1.0 + m) / (1.0 - m)) * (value - (1.0 + m) / 4.0) + (1.0 - m) / 4.0
+
+    return res
 
 
 def contrast_rgb(rgb,contrast):
