@@ -4,8 +4,8 @@ Functions for Assignment A3
 This file contains the functions for the assignment. You should replace the 
 stubs with your own implementations.
 
-YOUR NAME(S) AND NETID(S) HERE
-DATE COMPLETED HERE
+Avi Sharma (as4632)
+October 8, 2026
 """
 import introcs
 import math
@@ -18,7 +18,6 @@ def complement_rgb(rgb):
     Parameter rgb: the color to complement
     Precondition: rgb is an RGB object
     """
-    # THIS IS WRONG. FIX IT; I fixed it bro calm down all caps for what
     return introcs.RGB(255-rgb.red, 255-rgb.green, 255-rgb.blue)
 
 
@@ -39,7 +38,7 @@ def str5(value):
     Parameter value: the number to conver to a 5 character string.
     Precondition: value is a number (int or float), 0 <= value <= 360.
     """
-    # Remember that the rounding takes place at a different place depending 
+    # Remember that the rounding takes place at a different place depending
     # on how big value is. Look at the examples in the specification.
 
     if value >= 100:
@@ -55,7 +54,8 @@ def str5(value):
     elif len(val) == 3:
         val = val + '00'
     return str(val)
-    
+
+
 def str5_cmyk(cmyk):
     """
     Returns the string representation of cmyk in the form "(C, M, Y, K)".
@@ -73,7 +73,8 @@ def str5_cmyk(cmyk):
     Parameter cmyk: the color to convert to a string
     Precondition: cmyk is an CMYK object.
     """
-    val = str5(cmyk.cyan) + ', ' + str5(cmyk.magenta) + ', ' + str5(cmyk.yellow) + ', ' + str5(cmyk.black)
+    val = (str5(cmyk.cyan) + ', ' + str5(cmyk.magenta) + ', ' +
+           str5(cmyk.yellow) + ', ' + str5(cmyk.black))
     return '(' + val + ')'
 
 
@@ -94,8 +95,9 @@ def str5_hsl(hsl):
     Parameter hsl: the color to convert to a string
     Precondition: hsl is an HSL object.
     """
-    value = '<' + str5(hsl.hue) + ', ' + str5(hsl.saturation) + ', ' + str5(hsl.lightness) + '>'
-    return value
+    value = (str5(hsl.hue) + ', ' + str5(hsl.saturation) + ', ' +
+             str5(hsl.lightness))
+    return '(' + value + ')'
 
 
 def rgb_to_cmyk(rgb):
@@ -122,7 +124,6 @@ def rgb_to_cmyk(rgb):
         m = (1.0-green-k) / (1.0-k)
         y = (1.0-blue-k) / (1.0-k)
     return introcs.CMYK(c * 100.0, m * 100.0, y * 100.0, k * 100.0)
-    
 
 
 def cmyk_to_rgb(cmyk):
@@ -134,7 +135,7 @@ def cmyk_to_rgb(cmyk):
     Parameter cmyk: the color to convert to a RGB object
     Precondition: cmyk is an CMYK object.
     """
-    # The CMYK numbers are in the range 0.0..100.0. 
+    # The CMYK numbers are in the range 0.0..100.0.
     # Deal with them the same way as the RGB numbers in rgb_to_cmyk()
     cyan = cmyk.cyan / 100.0
     magenta = cmyk.magenta / 100.0
@@ -144,7 +145,6 @@ def cmyk_to_rgb(cmyk):
     red = round((1.0 - cyan) * (1.0 - k) * 255.0)
     green = round((1.0 - magenta) * (1.0 - k) * 255.0)
     blue = round((1.0 - yellow) * (1.0 - k) * 255.0)
-    print(introcs.RGB(red, green, blue))
     return introcs.RGB(red, green, blue)
 
 
@@ -163,7 +163,7 @@ def rgb_to_hsl(rgb):
     red = rgb.red / 255.0
     green = rgb.green / 255.0
     blue = rgb.blue / 255.0
-    
+
     maxrgb = max(red, green, blue)
     minrgb = min(red, green, blue)
 
@@ -243,20 +243,20 @@ def contrast_value(value,contrast):
     Parameter contrast: the contrast amount (0.5 is no contrast)
     Precondition: contrast is a float in 0..1
     """
-    res = 0.0
     if contrast == 1.0:
         if value >= 0.5:
-            res = 1.0
-        else:
-            res = 0.0
+            return 1.0
+        return 0.0
 
     m = 2.0 * contrast - 1.0
     if value < 0.25 + 0.25 * m:
         res = ((1.0 - m) / (1.0 + m)) * value
     elif value > 0.75 - 0.25 * m:
-        res = ((1.0 - m) / (1.0 + m)) * (value - (3.0 - m) / 4.0) + (3.0 + m) / 4.0
+        res = (((1.0 - m) / (1.0 + m)) *
+               (value - (3.0 - m) / 4.0) + (3.0 + m) / 4.0)
     else:
-        res = ((1.0 + m) / (1.0 - m)) * (value - (1.0 + m) / 4.0) + (1.0 - m) / 4.0
+        res = (((1.0 + m) / (1.0 - m)) *
+               (value - (1.0 + m) / 4.0) + (1.0 - m) / 4.0)
 
     return res
 
