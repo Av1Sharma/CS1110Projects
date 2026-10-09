@@ -1,8 +1,8 @@
 """ 
 Unit Test for Assignment A3
 
-This module implements several test cases for a3.  It is incomplete. You should 
-look though this file for places to add tests.
+This module tests the functions in a3 with cases for color formatting,
+conversion, and contrast.
 
 Avi Sharma (as4632)
 October 8, 2026

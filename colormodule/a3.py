@@ -80,16 +80,16 @@ def str5_cmyk(cmyk):
 
 def str5_hsl(hsl):
     """
-    Returns the string representation of hsl in the form "<H, S, L>".
+    Returns the string representation of hsl in the form "(H, S, L)".
     
     In the output, each of H, S, and L should be exactly 5 characters long.
     Hence the output of this function is not the same as str(hsl)
     
     Example: if str(hsl) is 
     
-          '<0.0,0.313725490196,0.5>'
+          '(0.0,0.313725490196,0.5)'
     
-    then str5_hsl(hsl) is '<0.000, 0.314, 0.500>'. Note the spaces after the
+    then str5_hsl(hsl) is '(0.000, 0.314, 0.500)'. Note the spaces after the
     commas. These must be there.
     
     Parameter hsl: the color to convert to a string
@@ -232,7 +232,7 @@ def contrast_value(value,contrast):
     
     At contrast = 0.5, the curve is the normal line y = x, so value is 
     unaffected. If contrast < 0.5, values are pulled closer together, with all 
-    values collapsing to 0.5 when contrast = 0. If contrast > 0, the values are 
+    values collapsing to 0.5 when contrast = 0. If contrast > 0.5, values are
     pulled farther apart, with all values becoming 0 or 1 when contrast = 1.
     
     Parameter value: the value to adjust
