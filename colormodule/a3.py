@@ -202,8 +202,6 @@ def hsl_to_rgb(hsl):
     l = hsl.lightness
 
     h_i = math.floor(h / 60.0)
-    if h_i == 6:
-        h_i = 0
 
     f = (h / 60.0) - math.floor(h / 60.0)
     c = min(l, 1.0 - l) * s
