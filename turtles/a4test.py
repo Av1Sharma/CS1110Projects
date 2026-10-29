@@ -606,19 +606,19 @@ def test_all():
     sp = get_speed()
     
     # # Test procedures. Comment out a test to skip it.
-    # test_draw_two_lines(w,sp)
+    test_draw_two_lines(w,sp)
     
-    # test_draw_triangle(w,sp)
-    # test_draw_hex(w,sp)
+    test_draw_triangle(w,sp)
+    test_draw_hex(w,sp)
     
     test_draw_spiral(w,sp)
-    # test_draw_vortex(w,sp)
-    # test_radiate(w,sp)
+    test_draw_vortex(w,sp)
+    test_radiate(w,sp)
     
-    # test_vicsek(w,sp)
-    # test_hexaflake(w,sp)
+    test_vicsek(w,sp)
+    test_hexaflake(w,sp)
     
-    # test_kochflake(w,sp)
+    test_kochflake(w,sp)
     
     print('Testing complete')
 

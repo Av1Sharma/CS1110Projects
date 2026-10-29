@@ -216,13 +216,12 @@ def draw_triangle(t, s, c):
     # Also, 3 lines have to be drawn. Does this suggest a for loop that
     # processes the range 0..2?
     
+    old_color = t.color
     t.color = c
-    t.dash = None
     for i in range(3):
         t.forward(s)
         t.right(120)
-    t.color = color
-    t.dash = dash
+    t.color = old_color
     t.flush()
 
 
