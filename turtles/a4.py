@@ -261,8 +261,8 @@ def draw_hex(t, s):
     # same as t's initial location and heading (except for roundoff error).
     
     for i in range(6):
-        t.forward(s)
-        t.right(60)
+        draw_triangle(t, s, 'cyan')
+        t.left(60)
     t.flush()
 
 
@@ -357,8 +357,20 @@ def draw_spiral(w, side, ang, n, sp):
     assert is_valid_iteration(n), report_error('n is not a valid number of iterations',n)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
-    # HINT: Remember to flush at the end for speed 0
-    pass
+    # Clear the window
+    w.clear()
+    
+    # Create a turtle facing north
+    t = Turtle(w)
+    t.heading = 90   # Face north
+    t.speed = sp
+    
+    # Draw the spiral
+    draw_spiral_helper(t, side, ang, n, sp)
+    
+    # Hide the turtle
+    t.visible = False
+    t.flush()
 
 
 def draw_spiral_helper(t, side, ang, n, sp):
@@ -404,8 +416,42 @@ def draw_spiral_helper(t, side, ang, n, sp):
     assert is_valid_iteration(n), report_error('n is not a valid number of iterations',n)
     assert is_valid_speed(sp), report_error('sp is not a valid speed',sp)
     
-    # IMPLEMENT ME
-    pass
+    # Save the attributes we must restore
+    oldcolor = t.color
+    oldspeed = t.speed
+    olddash  = t.dash
+    oldvis   = t.visible
+    oldmode  = t.drawmode
+    
+    # Set turtle speed
+    t.speed = sp
+    
+    # Color cycle: orange, cyan, red, blue
+    colors = ['orange', 'cyan', 'red', 'blue']
+    
+    for i in range(n):
+        length = (i + 1) * side
+        t.color = colors[i % 4]
+        
+        # Set the dash pattern for lines of length >= 5
+        if length >= 5:
+            seg = int(length // 5)
+            # Five-element dash: draw, gap, draw, gap, draw
+            # Remainder goes to the last segment
+            remainder = int(length - seg * 5)
+            t.dash = (seg, seg, seg, seg, seg + remainder)
+        else:
+            t.dash = None
+        
+        t.forward(length)
+        t.right(ang)
+    
+    # Restore saved attributes
+    t.color    = oldcolor
+    t.speed    = oldspeed
+    t.dash     = olddash
+    t.visible  = oldvis
+    t.drawmode = oldmode
 
 
 #################### TASK 3B: Polygon Vortex ####################
