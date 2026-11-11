@@ -222,6 +222,7 @@ class Image(object):
         Parameter n: The pixel number to access
         Precondition: n is an int >= 0 and < length (of the pixel list)
         """
+        assert isinstance(n, int)
         assert n >= 0 and n < self.getLength()
         return self._data[n]
     
@@ -241,10 +242,11 @@ class Image(object):
         Parameter pixel: The pixel value
         Precondition: pixel is a 3-element tuple (r,g,b) where each value is 0..255
         """
+        assert isinstance(n, int)
         assert n >= 0 and n < self.getLength()
         assert _is_pixel(pixel)
         self._data[n] = pixel
-        
+
     
     # PART C
     # TWO-DIMENSIONAL ACCESS METHODS
@@ -263,7 +265,11 @@ class Image(object):
         Parameter col: The pixel column
         Precondition: col is an int >= 0 and < width
         """
-        pass    # Implement me
+        assert isinstance(row, int)
+        assert isinstance(col, int)
+        assert row >= 0 and row < self.getHeight()
+        assert col >= 0 and col < self.getWidth()
+        return self.getFlatPixel((row * self.getWidth()) + col)
     
     def setPixel(self, row, col, pixel):
         """
