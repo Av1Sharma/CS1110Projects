@@ -41,7 +41,14 @@ def _is_pixel_list(data):
     Parameter data: The data to check
     Precondition: NONE (data can be anything)
     """
-    pass
+    if not isinstance(data, list):
+        return False
+
+    for item in data:
+        if not _is_pixel(item):
+            return False
+    
+    return True
 
 
 # TASK 1: IMPLEMENT THIS CLASS
