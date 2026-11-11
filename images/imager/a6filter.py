@@ -127,15 +127,24 @@ class Filter(a6canvas.Canvas):
             
         for blue.
         """
-        pass    # Implement me
+        current = self.getCurrent()
+        for pixel in range(current.getLength()):
+            rgb = current.getFlatPixel(pixel)
+            red = (rgb[0] // 32) * 32
+            green = (rgb[1] // 32) * 32
+            blue = (rgb[2] // 64) * 64
+            current.setFlatPixel(pixel,(red,green,blue))
     
     # PART B
     def reflectVert(self):
         """ 
         Reflects the current image around the vertical middle.
         """
-        pass    # Implement me
-    
+        current = self.getCurrent()
+        for col in range(current.getWidth()):          
+            for row in range(current.getHeight() // 2): 
+                opposite = current.getHeight() - 1 - row
+                current.swapPixels(row, col, opposite, col)  
     # PART C
     def jail(self):
         """
@@ -152,7 +161,24 @@ class Filter(a6canvas.Canvas):
         
         The n+2 vertical bars should be as evenly spaced as possible.
         """
-        pass    # Implement me
+        current = self.getCurrent()
+        width = current.getWidth()
+        height = current.getHeight()
+        red = (255, 0, 0)
+
+        for row in range(height):
+            for col in range(width):
+                if row < 3 or row >= height - 3:
+                    current.setPixel(row, col, red)
+
+        if width >= 4:
+            interior = max(0, (width - 8) // 50)
+            spacing = (width - 4) // (interior + 1)
+            for bar in range(interior + 2):
+                start = bar * spacing if bar <= interior else width - 4
+                for row in range(height):
+                    for col in range(start, start + 4):
+                        current.setPixel(row, col, red)
     
     # PART D
     def vignette(self):
@@ -171,7 +197,20 @@ class Filter(a6canvas.Canvas):
         to any of the corners.  The values d and hfD should be left as floats
         and not converted to ints.
         """
-        pass    # Implement me
+        current = self.getCurrent()
+        center_x = current.getWidth() / 2
+        center_y = current.getHeight() / 2
+        half_diagonal_squared = center_x ** 2 + center_y ** 2
+
+        for row in range(current.getHeight()):
+            for col in range(current.getWidth()):
+                distance_squared = (col - center_x) ** 2 + (row - center_y) ** 2
+                factor = 1 - distance_squared / half_diagonal_squared
+                pixel = current.getPixel(row, col)
+                darkened = (round(pixel[0] * factor),
+                            round(pixel[1] * factor),
+                            round(pixel[2] * factor))
+                current.setPixel(row, col, darkened)
     
     # HELPER METHODS
     def _drawHBar(self, row, pixel):

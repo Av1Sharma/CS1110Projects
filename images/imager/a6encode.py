@@ -38,6 +38,10 @@ class Encoder(a6filter.Filter):
             blist = list(text.encode('utf-8'))
         
         This allows the encode method to support all text, including emoji.
+
+        The first four pixels contain the marker 173, 42, 219, 86. The next
+        two contain the byte length as two base-1000 digits. Each following
+        pixel contains one UTF-8 byte. Thus the encoding uses six extra pixels.
         
         If the text UTF-8 encoding requires more than 999999 bytes or the 
         picture does  not have enough pixels to store these bytes this method
@@ -53,7 +57,19 @@ class Encoder(a6filter.Filter):
         # The first line (Returns True...)
         # The last paragraph (If the text UTF-8 encoding...)
         # The precondition (text is a string)
-        pass    # Implement me
+        assert isinstance(text, str)
+        data = text.encode('utf-8')
+        image = self.getCurrent()
+        if len(data) > 999999 or len(data) + 6 > image.getLength():
+            return False
+
+        marker = (173, 42, 219, 86)
+        header = marker + (len(data) // 1000, len(data) % 1000)
+        for pos in range(len(header)):
+            self._encode_pixel(pos, header[pos])
+        for pos in range(len(data)):
+            self._encode_pixel(pos + len(header), data[pos])
+        return True
     
     def decode(self):
         """
@@ -64,6 +80,10 @@ class Encoder(a6filter.Filter):
         using UTF-8 with the decode method:
             
             text = bytes(blist).decode('utf-8')
+
+        The first four pixels must contain the marker 173, 42, 219, 86.
+        The next two give the byte length in base 1000, followed by one
+        pixel per byte. Invalid lengths, bytes, or UTF-8 are rejected.
         
         If no message is detected, or if there is an error in decoding the
         message, this method returns None
@@ -71,7 +91,22 @@ class Encoder(a6filter.Filter):
         # You may modify anything in the above specification EXCEPT
         # The first line (Returns the secret...)
         # The last paragraph (If no message is detected...)
-        pass    # Implement me
+        image = self.getCurrent()
+        if image.getLength() < 6:
+            return None
+        marker = (173, 42, 219, 86)
+        if any(self._decode_pixel(pos) != marker[pos] for pos in range(4)):
+            return None
+        length = self._decode_pixel(4) * 1000 + self._decode_pixel(5)
+        if length > 999999 or length > image.getLength() - 6:
+            return None
+        values = [self._decode_pixel(pos + 6) for pos in range(length)]
+        if any(value > 255 for value in values):
+            return None
+        try:
+            return bytes(values).decode('utf-8')
+        except UnicodeDecodeError:
+            return None
     
     # HELPER METHODS
     def _decode_pixel(self, pos):
@@ -86,10 +121,27 @@ class Encoder(a6filter.Filter):
         """
         # This is helper. You do not have to use it. You are allowed to change it.
         # There are no restrictions on how you can change it.
-        rgb = self.getCurrent()[pos]
+        rgb = self.getCurrent().getFlatPixel(pos)
         red   = rgb[0]
         green = rgb[1]
         blue  = rgb[2]
         return  (red % 10) * 100  +  (green % 10) * 10  +  blue % 10
     
     # ADDITONAL HELPER METHODS (ADD WHAT YOU NEED HERE)
+    def _encode_pixel(self, pos, number):
+        """Hide a number from 0 to 999 in the last digits of pixel pos.
+
+        If replacing a color's last digit would exceed 255, subtract 10;
+        this preserves the digit and keeps the component in range.
+        """
+        assert isinstance(pos, int) and 0 <= pos < self.getCurrent().getLength()
+        assert isinstance(number, int) and 0 <= number <= 999
+        pixel = self.getCurrent().getFlatPixel(pos)
+        digits = (number // 100, (number // 10) % 10, number % 10)
+        result = []
+        for component, digit in zip(pixel, digits):
+            value = (component // 10) * 10 + digit
+            if value > 255:
+                value -= 10
+            result.append(value)
+        self.getCurrent().setFlatPixel(pos, tuple(result))
