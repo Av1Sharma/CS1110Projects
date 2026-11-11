@@ -8,8 +8,8 @@ providing this functionality in one application.
 
 Based on an original file by Dexter Kozen (dck10) and Walker White (wmw2)
 
-YOUR NAME(S) AND NETID(S) HERE
-DATE COMPLETED HERE
+Avi Sharma (as4632)
+November 11, 2026
 """
 import a6filter
 
