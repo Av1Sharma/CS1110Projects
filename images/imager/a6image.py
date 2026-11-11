@@ -222,7 +222,8 @@ class Image(object):
         Parameter n: The pixel number to access
         Precondition: n is an int >= 0 and < length (of the pixel list)
         """
-        pass    # Implement me
+        assert n >= 0 and n < self.getLength()
+        return self._data[n]
     
     def setFlatPixel(self, n, pixel):
         """
@@ -240,7 +241,10 @@ class Image(object):
         Parameter pixel: The pixel value
         Precondition: pixel is a 3-element tuple (r,g,b) where each value is 0..255
         """
-        pass    # Implement me
+        assert n >= 0 and n < self.getLength()
+        assert _is_pixel(pixel)
+        self._data[n] = pixel
+        
     
     # PART C
     # TWO-DIMENSIONAL ACCESS METHODS
