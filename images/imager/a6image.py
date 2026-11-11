@@ -287,7 +287,13 @@ class Image(object):
         Parameter pixel: The pixel value
         Precondition: pixel is a 3-element tuple (r,g,b) of ints in 0..255
         """
-        pass    # Implement me
+        assert isinstance(row, int)
+        assert isinstance(col, int)
+        assert row >= 0 and row < self.getHeight()
+        assert col >= 0 and col < self.getWidth()
+        assert _is_pixel(pixel)
+        self.setFlatPixel((row * self.getWidth()) + col, pixel)
+        
     
     # PART D
     def __str__(self):
@@ -318,7 +324,25 @@ class Image(object):
         (the individual pixels) handle this  part for you automatically, but you
         need to handle the commas between pixels and the newlines between rows.
         """
-        pass    # Implement me
+        result = '['
+        counter = 0
+
+        for pixel in self._data:
+            if counter % self.getWidth() == 0:
+                if counter > 0:
+                    result += ',\n'
+                result += '['
+            else:
+                result += ', '
+
+            result += str(pixel)
+            counter += 1
+
+            if counter % self.getWidth() == 0:
+                result += ']'
+
+        return result + ']'
+
     
     # ADDITIONAL METHODS (WE HAVE PROVIDED THESE FOR YOU)
     def swapPixels(self, row1, col1, row2, col2):
