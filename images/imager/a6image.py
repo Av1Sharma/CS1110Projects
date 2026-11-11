@@ -129,7 +129,8 @@ class Image(object):
         """
         pixels = self.getLength()
         assert isinstance(value, int) and value >= 0
-        assert (value == 0 and pixels == 0) or (value > 0 and pixels % value == 0)
+        assert (value == 0 and pixels == 0) or (
+            value > 0 and pixels % value == 0)
 
         self._width = value
         if value == 0:
@@ -162,7 +163,8 @@ class Image(object):
         """
         pixels = self.getLength()
         assert isinstance(value, int) and value >= 0
-        assert (value == 0 and pixels == 0) or (value > 0 and pixels % value == 0)
+        assert (value == 0 and pixels == 0) or (
+            value > 0 and pixels % value == 0)
 
         self._height = value
         if value == 0:

@@ -133,6 +133,12 @@ class Encoder(a6filter.Filter):
 
         If replacing a color's last digit would exceed 255, subtract 10;
         this preserves the digit and keeps the component in range.
+
+        Parameter pos: the position in the flattened pixel list
+        Precondition: pos is an int, 0 <= pos < image length
+
+        Parameter number: the number to hide
+        Precondition: number is an int in 0..999
         """
         assert isinstance(pos, int) and 0 <= pos < self.getCurrent().getLength()
         assert isinstance(number, int) and 0 <= number <= 999

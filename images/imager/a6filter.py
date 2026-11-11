@@ -92,7 +92,8 @@ class Filter(a6canvas.Canvas):
         
         for row in range(current.getHeight()):      # Loop over the rows
             for col in range(current.getWidth()):   # Loop over the columnns
-                current.setPixel(row,col,original.getPixel(original.getHeight()-col-1,row))
+                pixel = original.getPixel(original.getHeight()-col-1, row)
+                current.setPixel(row, col, pixel)
     
     def rotateLeft(self):
         """
@@ -108,7 +109,8 @@ class Filter(a6canvas.Canvas):
         
         for row in range(current.getHeight()):      # Loop over the rows
             for col in range(current.getWidth()):   # Loop over the columnns
-                current.setPixel(row,col,original.getPixel(col,original.getWidth()-row-1))
+                pixel = original.getPixel(col, original.getWidth()-row-1)
+                current.setPixel(row, col, pixel)
     
     # PART A
     def posterize(self):
@@ -173,12 +175,9 @@ class Filter(a6canvas.Canvas):
 
         if width >= 4:
             interior = max(0, (width - 8) // 50)
-            spacing = (width - 4) // (interior + 1)
+            spacing = (width - 4) / (interior + 1)
             for bar in range(interior + 2):
-                start = bar * spacing if bar <= interior else width - 4
-                for row in range(height):
-                    for col in range(start, start + 4):
-                        current.setPixel(row, col, red)
+                self._drawVBar(round(bar * spacing), red)
     
     # PART D
     def vignette(self):
@@ -235,5 +234,19 @@ class Filter(a6canvas.Canvas):
             current.setPixel(row+2, col, pixel)
     
     # ADDITONAL HELPER METHODS (ADD WHAT YOU NEED HERE)
+    def _drawVBar(self, col, pixel):
+        """
+        Draws a four-pixel-wide vertical bar on the current image.
+
+        Parameter col: the leftmost column of the bar
+        Precondition: col is an int, 0 <= col and col + 3 < image width
+
+        Parameter pixel: the color of the bar
+        Precondition: pixel is a 3-element tuple of ints in 0..255
+        """
+        current = self.getCurrent()
+        for row in range(current.getHeight()):
+            for offset in range(4):
+                current.setPixel(row, col + offset, pixel)
 
     
