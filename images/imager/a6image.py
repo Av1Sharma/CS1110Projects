@@ -136,9 +136,6 @@ class Image(object):
             self._height = 0
         else:
             self._height = pixels // value
-        
-
-        
     
     def getHeight(self):
         """
@@ -163,7 +160,16 @@ class Image(object):
         Parameter value: the new height value
         Precondition: value is a valid height >= 0
         """
-        pass    # Implement me
+        pixels = self.getLength()
+        assert isinstance(value, int) and value >= 0
+        assert (value == 0 and pixels == 0) or (value > 0 and pixels % value == 0)
+
+        self._height = value
+        if value == 0:
+            self._width = 0
+        else:
+            self._width = pixels // value
+        
     
     # INITIALIZER
     def __init__(self, data, width):
@@ -191,7 +197,15 @@ class Image(object):
         Parameter width: The image width
         Precondition: width is an int > 0 and evenly divides the length of pixels
         """
-        pass    # Implement me
+        assert _is_pixel_list(data)
+        self._data = data
+        pixels = self.getLength()
+        assert isinstance(width, int)
+        assert width > 0
+        assert pixels % width == 0
+        self._width = width
+        self._height = pixels // width
+
     
     # PART B
     # ONE-DIMENSIONAL ACCESS METHODS
