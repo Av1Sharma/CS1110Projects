@@ -96,13 +96,13 @@ class Image(object):
         use this method as a helper in any of your other methods in this 
         assignment. It is only used internally by the GUI.
         """
-        pass    # Implement me
+        return self._data[ : ]
     
     def getLength(self):
         """
         Returns the number of pixels in this image
         """
-        pass    # Implement me
+        return len(self._data)
         
     def getWidth(self):
         """
@@ -111,7 +111,7 @@ class Image(object):
         A value width is an int evenly dividing the number of pixels in the 
         image. Width can only be 0 if the image is empty.
         """
-        pass    # Implement me
+        return self._width
     
     def setWidth(self,value):
         """
@@ -127,7 +127,18 @@ class Image(object):
         Parameter value: the new width value
         Precondition: value is a valid width >= 0
         """
-        pass    # Implement me
+        pixels = self.getLength()
+        assert isinstance(value, int) and value >= 0
+        assert (value == 0 and pixels == 0) or (value > 0 and pixels % value == 0)
+
+        self._width = value
+        if value == 0:
+            self._height = 0
+        else:
+            self._height = pixels // value
+        
+
+        
     
     def getHeight(self):
         """
@@ -136,7 +147,7 @@ class Image(object):
         A value height is an int evenly dividing the number of pixels in the 
         image. Height can only be 0 if the image is empty.
         """
-        pass    # Implement me
+        return self._height
     
     def setHeight(self,value):
         """
