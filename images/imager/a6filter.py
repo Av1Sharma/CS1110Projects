@@ -168,16 +168,12 @@ class Filter(a6canvas.Canvas):
         height = current.getHeight()
         red = (255, 0, 0)
 
-        for row in range(height):
-            for col in range(width):
-                if row < 3 or row >= height - 3:
-                    current.setPixel(row, col, red)
-
-        if width >= 4:
-            interior = max(0, (width - 8) // 50)
-            spacing = (width - 4) / (interior + 1)
-            for bar in range(interior + 2):
-                self._drawVBar(round(bar * spacing), red)
+        self._drawHBar(0, red)
+        self._drawHBar(height-3, red)
+        interior = max(0, (width - 8) // 50)
+        spacing = (width - 4) / (interior + 1)
+        for bar in range(interior + 2):
+            self._drawVBar(round(bar * spacing), red)
     
     # PART D
     def vignette(self):
